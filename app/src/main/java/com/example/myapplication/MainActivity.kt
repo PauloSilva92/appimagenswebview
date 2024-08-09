@@ -54,17 +54,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        webView.addJavascriptInterface(this, "Android")
-
         webView.loadUrl("http://10.0.2.2:8080")
-    }
-
-    @JavascriptInterface
-    fun openPicker() {
-        Intent(Intent.ACTION_GET_CONTENT).also {
-            it.type = "image/*"
-            startActivityForResult(it, 1)
-        }
     }
 
 
@@ -88,10 +78,6 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-        }
-
-        if (requestCode == 1 && resultCode == RESULT_OK) {
-            webView.evaluateJavascript("showImage('${data?.data}')", null)
         }
 
         super.onActivityResult(requestCode, resultCode, data)
